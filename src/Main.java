@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +19,18 @@ public class Main {
                 .filter(Person -> Person.getAge() < 18)
                 .count();
 
+        persons.stream()
+                .filter(Person -> Person.getAge() > 18)
+                .filter(Person -> Person.getAge() < 29)
+                .filter(Person -> Person.getSex() == Sex.MAN)
+                .map(Person::getFamily)
+                .collect(Collectors.toList());
 
+        persons.stream()
+                .filter(Person -> Person.getAge() > 18)
+                .filter(Person -> Person.getAge() < 56)
+                .filter(Person -> Person.getEducation() == Education.HIGHER)
+                .sorted(Comparator.comparing(Person::getFamily))
+                .collect(Collectors.toList());
     }
 }
