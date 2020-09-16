@@ -15,22 +15,21 @@ public class Main {
                 new Person("John", "Brown", 44, Sex.MAN, Education.HIGHER)
         );
 
-        persons.stream()
+        System.out.println(persons.stream()
                 .filter(Person -> Person.getAge() < 18)
-                .count();
+                .count());
 
-        persons.stream()
+        System.out.println(persons.stream()
                 .filter(Person -> Person.getAge() > 18)
                 .filter(Person -> Person.getAge() < 29)
                 .filter(Person -> Person.getSex() == Sex.MAN)
                 .map(Person::getFamily)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
 
-        persons.stream()
-                .filter(Person -> Person.getAge() > 18)
-                .filter(Person -> Person.getAge() < 56)
+        System.out.println(persons.stream()
+                .filter(Person -> Person.getAge() > 18 && (Person.getAge() < 65 && Person.getSex() == Sex.MAN) || (Person.getAge() < 60 && Person.getSex() == Sex.WOMEN))
                 .filter(Person -> Person.getEducation() == Education.HIGHER)
                 .sorted(Comparator.comparing(Person::getFamily))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 }
