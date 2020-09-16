@@ -16,19 +16,19 @@ public class Main {
         );
 
         System.out.println(persons.stream()
-                .filter(Person -> Person.getAge() < 18)
+                .filter(person -> person.getAge() < 18)
                 .count());
 
         System.out.println(persons.stream()
-                .filter(Person -> Person.getAge() > 18)
-                .filter(Person -> Person.getAge() < 29)
-                .filter(Person -> Person.getSex() == Sex.MAN)
+                .filter(person -> person.getAge() > 18)
+                .filter(person -> person.getAge() < 29)
+                .filter(person -> person.getSex() == Sex.MAN)
                 .map(Person::getFamily)
                 .collect(Collectors.toList()));
 
         System.out.println(persons.stream()
-                .filter(Person -> Person.getAge() > 18 && (Person.getAge() < 65 && Person.getSex() == Sex.MAN) || (Person.getAge() < 60 && Person.getSex() == Sex.WOMEN))
-                .filter(Person -> Person.getEducation() == Education.HIGHER)
+                .filter(person -> person.getAge() > 18 && (person.getAge() < 65 && person.getSex() == Sex.MAN) || (person.getAge() < 60 && person.getSex() == Sex.WOMEN))
+                .filter(person -> person.getEducation() == Education.HIGHER)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList()));
     }
